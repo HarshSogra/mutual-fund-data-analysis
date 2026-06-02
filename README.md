@@ -1,4 +1,4 @@
-# Mutual Fund Analysis - Day 1
+# Mutual Fund Analysis 
 
 This repository contains the Day 1 deliverables for the Mutual Fund Analysis project, focused on data ingestion, quality inspection, validation, and live NAV retrieval.
 
