@@ -1,6 +1,8 @@
+"""Clean raw mutual fund CSV datasets and write standardized processed files."""
+
 import os
+
 import pandas as pd
-import numpy as np
 
 def clean_dataset_01(df):
     """01_fund_master.csv: Clean duplicates and standardize date."""
@@ -139,6 +141,7 @@ def clean_dataset_10(df):
     return df
 
 def main():
+    """Run all dataset-specific cleaning steps."""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     raw_dir = os.path.join(base_dir, 'data', 'raw')
     processed_dir = os.path.join(base_dir, 'data', 'processed')

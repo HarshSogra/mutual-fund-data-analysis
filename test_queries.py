@@ -1,8 +1,6 @@
-import sqlite3
+"""Run a few verification queries against the SQLite analytics database."""
 
-db_path = "bluestock_mf.db"
-conn = sqlite3.connect(db_path)
-cursor = conn.cursor()
+import sqlite3
 
 # Test a few analytical queries
 queries = [
@@ -28,21 +26,32 @@ queries = [
     """)
 ]
 
-print("=" * 60)
-print(" TESTING ANALYTICAL SQL QUERIES")
-print("=" * 60)
 
-for title, query in queries:
-    print(f"\n{title}:")
-    try:
-        result = cursor.execute(query).fetchall()
-        if result:
-            for row in result[:5]:
-                print(f"  {row}")
-        else:
-            print("  (No results)")
-    except Exception as e:
-        print(f"  ERROR: {e}")
+def main() -> None:
+    """Execute sample SQL queries and print compact result previews."""
+    db_path = "bluestock_mf.db"
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
 
-print("\n" + "=" * 60)
-conn.close()
+    print("=" * 60)
+    print(" TESTING ANALYTICAL SQL QUERIES")
+    print("=" * 60)
+
+    for title, query in queries:
+        print(f"\n{title}:")
+        try:
+            result = cursor.execute(query).fetchall()
+            if result:
+                for row in result[:5]:
+                    print(f"  {row}")
+            else:
+                print("  (No results)")
+        except Exception as e:
+            print(f"  ERROR: {e}")
+
+    print("\n" + "=" * 60)
+    conn.close()
+
+
+if __name__ == "__main__":
+    main()

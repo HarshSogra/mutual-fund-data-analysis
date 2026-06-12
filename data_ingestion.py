@@ -1,8 +1,11 @@
+"""Inspect raw mutual fund datasets and report basic data quality findings."""
+
 import os
+
 import pandas as pd
-import numpy as np
 
 def run_data_ingestion():
+    """Load raw CSV files, print quality checks, and validate AMFI coverage."""
     # Define directories
     base_dir = os.path.dirname(os.path.abspath(__file__))
     raw_data_dir = os.path.join(base_dir, 'data', 'raw')

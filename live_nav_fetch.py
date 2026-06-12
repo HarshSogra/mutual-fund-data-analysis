@@ -1,8 +1,12 @@
+"""Fetch live mutual fund NAV history from MFAPI and save CSV extracts."""
+
 import os
-import requests
+
 import pandas as pd
+import requests
 
 def fetch_scheme_nav(amfi_code, output_filename):
+    """Fetch NAV history for one AMFI scheme code and save it to raw data."""
     url = f"https://api.mfapi.in/mf/{amfi_code}"
     base_dir = os.path.dirname(os.path.abspath(__file__))
     output_path = os.path.join(base_dir, 'data', 'raw', output_filename)
@@ -29,7 +33,7 @@ def fetch_scheme_nav(amfi_code, output_filename):
             # Format dates from DD-MM-YYYY to YYYY-MM-DD for standard format consistency
             try:
                 df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y').dt.strftime('%Y-%m-%d')
-            except Exception as e:
+            except Exception:
                 # Fallback to saving raw dates if conversion fails
                 pass
                 
@@ -54,6 +58,7 @@ def fetch_scheme_nav(amfi_code, output_filename):
         return False
 
 def main():
+    """Fetch the configured list of live NAV files."""
     print("=" * 60)
     print(" FETCHING LIVE NAV DATA FROM MFAPI")
     print("=" * 60)

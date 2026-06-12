@@ -1,8 +1,12 @@
+"""Load processed mutual fund datasets into the SQLite star schema."""
+
 import os
+
 import pandas as pd
 from sqlalchemy import create_engine, text
 
 def load_data():
+    """Create the SQLite database and populate dimensional and fact tables."""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     processed_dir = os.path.join(base_dir, 'data', 'processed')
     db_path = os.path.join(base_dir, 'bluestock_mf.db')
